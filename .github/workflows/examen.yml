@@ -10,7 +10,7 @@ on:
   pull_request:
     paths:
       - '**.py'
-      - '.github/workflows/CI_CD.yml'
+      - '.github/workflows/examen.yml'
 
 jobs:
   flake8-lint:
