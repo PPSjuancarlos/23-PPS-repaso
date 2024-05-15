@@ -2,11 +2,18 @@ name: CI/CD todo
 
 
 on:
+<<<<<<< HEAD
   # push:
   #   branches: [ main ]
   #   paths:
   #     - '**.py'
   #     - '.github/workflows/CI_CD.yml'
+=======
+  push:
+    paths:
+      - '**.py'
+      - '.github/workflows/CI_CD.yml'
+>>>>>>> d8e67fe559979dc7a1d3e26660fead6c9f2da373
   pull_request:
     paths:
       - '**.py'
@@ -48,6 +55,7 @@ jobs:
           push: true 
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/repasotest:latest
 
+<<<<<<< HEAD
   aws:
     name: Deploy image to aws
     needs: build
@@ -65,6 +73,26 @@ jobs:
             docker stop web && docker rm web
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/repasotest
             docker run -d -p 80:8000 --name web ${{ secrets.DOCKERHUB_USERNAME }}/repasotest
+=======
+  # aws:
+  #   name: Deploy image to aws
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: multiple command
+  #     uses: appleboy/ssh-action@master
+  #     with:
+  #       host: ${{ secrets.AWS_HOSTNAME }}
+  #       username: ${{ secrets.AWS_USERNAME }}
+  #       key: ${{ secrets.AWS_PRIVATE_KEY }}
+  #       port: 22  # ${{ secrets.PORT }}
+  #       script: |
+  #           sleep 30
+  #           docker stop web && docker rm web
+  #           docker rmi christianloceli/fastapi-ceti
+  #           docker run -d -p 80:8000 --name web christianloceli/fastapi-ceti
+  #           sleep 30
+>>>>>>> d8e67fe559979dc7a1d3e26660fead6c9f2da373
 
   # lakuapik:
   #   name: HTTP Status
